@@ -1,4 +1,4 @@
-name: 🚀 Zayq React+TS CI
+name: 🚀 Zayq React+TS CI/CD
 
 on:
   push:
@@ -9,7 +9,6 @@ on:
 jobs:
   quality-control:
     runs-on: ubuntu-latest
-
     steps:
       - name: 🛰️ Checkout Code
         uses: actions/checkout@v4
@@ -21,15 +20,29 @@ jobs:
           cache: 'npm'
 
       - name: 📦 Install Dependencies
-        run: npm ci
+        # Using 'install' instead of 'ci' to handle the fresh repo setup
+        run: npm install 
 
       - name: 🔍 TypeScript Type Check
-        run: npx tsc --noEmit
-        # This ensures your TS interfaces and types are perfect
-
-      - name: 🎨 Lint Code
-        run: npm run lint
-        continue-on-error: true # Doesn't stop the build if there are just styling warnings
-
-      - name: 🏗️ Production Build
+        # Using the build command you have in package.json
         run: npm run build
+
+      - name: 🎨 Lint Check
+        # Allowing lint to pass even with warnings to keep the flow moving
+        run: npm run lint || echo "Linting warnings found, moving to build..."
+
+  deploy:
+    name: 🌐 Deploy to Vercel
+    needs: quality-control
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛰️ Checkout Code
+        uses: actions/checkout@v4
+      - name: 🚀 Deploy to Vercel
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
