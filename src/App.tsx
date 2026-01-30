@@ -1,7 +1,8 @@
-import React from 'react'
-
+import Navbar from "../src/assets/components/layout/Navbar"
 export default function App() {
   return (
-    <div className='font-medium text-sky-500'>App</div>
+    <div> 
+      <Navbar/>
+    </div>
   )
 }
