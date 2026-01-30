@@ -20,23 +20,17 @@ jobs:
           cache: 'npm'
 
       - name: 📦 Install Dependencies
-        # Using 'install' instead of 'ci' to handle initial setup 
-        # while ensuring your Tailwind 4 plugins are correctly loaded.
         run: npm install 
 
       - name: 🔍 Production Build & Type Check
-        # This triggers 'tsc -b && vite build' from your package.json scripts.
-        # It's the most effective way to verify your TS and Vite config.
         run: npm run build
 
       - name: 🎨 Lint Check
-        # This will run but won't crash the deployment if there are only warnings.
         run: npm run lint || echo "Linting warnings found, moving to deploy..."
 
   deploy:
     name: 🌐 Deploy to Vercel
     needs: quality-control
-    # Only deploy if pushing to the main branch
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
@@ -46,6 +40,7 @@ jobs:
       - name: 🚀 Deploy to Vercel
         uses: amondnet/vercel-action@v20
         with:
+          # This tells GitHub to pull from your "Secrets" settings
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
