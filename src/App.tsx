@@ -1,7 +1,12 @@
-import React from 'react'
-
+import Navbar from "../src/assets/components/layout/Navbar"
+import Footer from "./assets/components/layout/Footer"
+import Homepage from "./features/home/Homepage"
 export default function App() {
   return (
-    <div className='font-medium text-sky-500'>App</div>
+    <div> 
+      <Navbar/>
+      <Homepage/>
+      <Footer/>
+    </div>
   )
 }
