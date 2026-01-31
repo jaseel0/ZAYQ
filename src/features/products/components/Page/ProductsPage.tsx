@@ -12,8 +12,8 @@ const ProductsPage: React.FC = () => {
     let result = [...MOCK_PRODUCTS];
     if (searchQuery) result = result.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()));
     if (selectedCategory !== 'All') result = result.filter(p => p.category === selectedCategory);
-    if (sortBy === 'low') result.sort((a, b) => a.price - b.price);
-    if (sortBy === 'high') result.sort((a, b) => b.price - a.price);
+    if (sortBy === 'price-asc') result.sort((a, b) => a.price - b.price);
+    if (sortBy === 'price-desc') result.sort((a, b) => b.price - a.price);
     return result;
   }, [searchQuery, sortBy, selectedCategory]);
 

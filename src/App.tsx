@@ -1,12 +1,29 @@
-import Navbar from "../src/assets/components/layout/Navbar"
+import React from "react"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+
+import Navbar from "./assets/components/layout/Navbar"
 import Footer from "./assets/components/layout/Footer"
 import Homepage from "./features/home/Homepage"
-export default function App() {
+import ProductsPage from "./features/products/components/Page/ProductsPage"
+
+const App: React.FC = () => {
   return (
-    <div> 
-      <Navbar/>
-      <Homepage/>
-      <Footer/>
-    </div>
+    <Router>
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+
+        {/* Main content */}
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/products" element={<ProductsPage />} />
+          </Routes>
+        </main>
+
+        <Footer />
+      </div>
+    </Router>
   )
 }
+
+export default App
