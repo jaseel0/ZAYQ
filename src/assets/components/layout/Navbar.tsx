@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
   ]
 
   return (
-    <nav className="w-full bg-[#f4f4f4] px-6 py-4 md:px-12 md:py-6 border-b border-gray-200">
+<nav className="fixed top-0 left-0 right-0 z-50 w-full bg-[#f4f4f4] px-6 py-2 md:px-12 md:py-3 border-b border-gray-200">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
 
         {/* Logo */}
@@ -114,4 +114,4 @@ const Navbar: React.FC = () => {
   )
 }
 
-export default Navbar
+export default Navbar;
