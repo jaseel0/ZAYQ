@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
         {/* Action Button Section */}
         <div className="flex items-center space-x-4">
           <button className="hidden md:block bg-[#1a1a1a] text-white px-8 py-3 rounded-xl font-semibold text-sm hover:bg-[#333] transition-colors shadow-sm">
-            Buy Now
+            Own now
           </button>
 
           {/* Mobile Menu Toggle */}

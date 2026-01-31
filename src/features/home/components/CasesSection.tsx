@@ -1,4 +1,5 @@
-import React from 'react';
+import clsx from "clsx";
+
 interface CaseProduct {
     id: number;
     name: string;
@@ -7,7 +8,7 @@ interface CaseProduct {
     type: 'matte' | 'clear' | 'leather';
 }
 
-const CasesSection: React.FC = () => {
+const CasesSection = () => {
     const cases: CaseProduct[] = [
         {
             id: 1,
@@ -47,12 +48,14 @@ const CasesSection: React.FC = () => {
 
                                 {/* Visual Phone Case Representation */}
                                 <div
-                                    className={`relative w-44 h-88 rounded-[2.75rem] shadow-2xl border-[6px] border-[#2a2a2c] flex flex-col items-center p-2 transition-transform duration-500 group-hover:scale-105`}
-                                    style={{
-                                        backgroundColor: item.imageColor,
-                                        backgroundImage: item.type === 'clear' ? 'linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.2) 100%)' : 'none',
-                                        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
-                                    }}
+                                    className={clsx(
+                                        `relative w-44 h-88 rounded-[2.75rem] shadow-2xl border-[6px] border-[#2a2a2c] flex flex-col bg-[${item.imageColor}] items-center p-2 transition-transform duration-500 group-hover:scale-105`,
+                                        item.type === 'clear' ? 'linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.2) 100%)' : 'none',
+                                        
+                                    )}
+                                    // style={{
+                                        // boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+                                    // }}
                                 >
                                     {/* Camera Module - Precise layout as per the image */}
                                     <div className="absolute top-5 left-5 w-18 h-18 bg-black/15 rounded-2xl p-1.5 grid grid-cols-2 gap-1.5">
