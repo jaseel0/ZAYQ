@@ -1,35 +1,70 @@
 import React from "react";
-import { Apple } from "lucide-react"
 import type { Product } from "../../../../store/product.store"
+
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
+    const isComingSoon = product.status === 'coming-soon';
+    const isOutOfStock = product.status === 'out-of-stock';
+
+    const handleBuyNow = () => {
+        if (isComingSoon || isOutOfStock) return;
+        const message = encodeURIComponent(`Hi ZAYQ! I'm interested in the ${product.name} (₹${product.price}). Is it in stock?`);
+        window.open(`https://wa.me/91XXXXXXXXXX?text=${message}`, '_blank'); // Replace with your WhatsApp number
+    };
+
     return (
-        <div className="flex flex-col group cursor-pointer">
-            <div className="relative aspect-4/5 rounded-3xl bg-[#E6E3DF] flex items-center justify-center overflow-hidden transition-all duration-700 ease-in-out group-hover:bg-[#EFECE8]">
-                <div
-                    className="relative w-32 h-64 sm:w-40 sm:h-80 rounded-[2.8rem] shadow-2xl border-[6px] border-[#1C1C1C] flex flex-col items-center p-2 transition-transform duration-500 ease-out group-hover:scale-105"
-                    style={{
-                        backgroundColor: product.colorHex,
-                        backgroundImage: product.type === 'clear' ? 'linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.1) 100%)' : 'none',
-                    }}
-                >
-                    <div className="absolute top-5 left-5 w-14 h-14 bg-black/10 rounded-xl p-1.5 grid grid-cols-2 gap-1">
-                        <div className="w-5 h-5 rounded-full bg-black/30"></div>
-                        <div className="w-5 h-5 rounded-full bg-black/30"></div>
-                        <div className="w-5 h-5 rounded-full bg-black/30 col-span-2 mx-auto"></div>
+        <div className="flex flex-col group">
+            {/* Image Wrapper */}
+            <div className="relative aspect-4/5 rounded-2xl bg-[#E6E3DF] overflow-hidden transition-all duration-500 group-hover:bg-[#EFECE8]">
+                
+                {/* Status Badge */}
+                {(isComingSoon || isOutOfStock) && (
+                    <div className="absolute top-4 left-4 z-20 px-3 py-1 bg-white/90 backdrop-blur-md rounded-full shadow-sm">
+                        <p className="text-[9px] font-black uppercase tracking-widest text-black">
+                            {isComingSoon ? 'Coming Soon' : 'Sold Out'}
+                        </p>
                     </div>
-                    {product.type === 'clear' && <div className="mt-32 opacity-10"><Apple size={40} /></div>}
+                )}
+
+                {/* Actual Product Image */}
+                <div className={`w-full h-full transition-all duration-700 ease-in-out ${!isComingSoon && 'group-hover:scale-110'} ${isComingSoon ? 'blur-xl opacity-50' : 'opacity-100'}`}>
+                    {product.imageUrl ? (
+                        <img 
+                            src={product.imageUrl} 
+                            alt={product.name}
+                            className="w-full h-full object-cover"
+                        />
+                    ) : (
+                        <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs">
+                            No Image Available
+                        </div>
+                    )}
                 </div>
-                <div className="absolute bottom-8 w-32 h-4 bg-black/5 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                {/* Hover Overlay for In-Stock items */}
+                {!isComingSoon && !isOutOfStock && (
+                    <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                )}
             </div>
-            <div className="mt-6 flex flex-col items-center text-center">
-                <h3 className="text-lg font-bold text-[#111111]">{product.name}</h3>
-                <p className="text-[#8F8F8F] text-sm font-medium">{product.category}</p>
-                <p className="text-[#111111] font-semibold mt-1">₹{product.price.toLocaleString()}</p>
-                <button className="mt-5 w-full max-w-40 py-3 bg-[#111111] text-white text-[10px] font-bold uppercase tracking-[0.2em] rounded-full transition-all duration-300 hover:bg-[#2A2A2A] hover:scale-[1.02]">
-                    Add to Cart
+
+            {/* Details Section */}
+            <div className="mt-5 flex flex-col items-center text-center">
+                <h3 className="text-base font-bold text-[#111111] tracking-tight">{product.name}</h3>
+                <p className="text-[#8F8F8F] text-xs font-medium uppercase tracking-wider mt-1">{product.category}</p>
+                <p className="text-[#111111] font-semibold mt-2">₹{product.price.toLocaleString()}</p>
+                
+                <button 
+                    onClick={handleBuyNow}
+                    disabled={isComingSoon || isOutOfStock}
+                    className={`mt-4 w-full py-3 text-[10px] font-bold uppercase tracking-[0.2em] rounded-xl transition-all duration-300 
+                        ${isComingSoon || isOutOfStock 
+                            ? 'bg-gray-200 text-gray-400 cursor-not-allowed' 
+                            : 'bg-[#111111] text-white hover:bg-black active:scale-95'}`}
+                >
+                    {isComingSoon ? 'Coming Soon' : isOutOfStock ? 'Sold Out' : 'Order via WhatsApp'}
                 </button>
             </div>
         </div>
     );
 };
+
 export default ProductCard;
