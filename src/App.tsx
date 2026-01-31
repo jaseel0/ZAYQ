@@ -1,5 +1,6 @@
 import Navbar from "../src/assets/components/layout/Navbar"
 import Footer from "./assets/components/layout/Footer"
+import About from "./features/about/About"
 import Homepage from "./features/home/Homepage"
 export default function App() {
   return (
