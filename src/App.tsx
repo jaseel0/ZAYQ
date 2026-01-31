@@ -7,6 +7,7 @@ import About from "./features/about/About"
 import Homepage from "./features/home/Homepage"
 import ProductsPage from "./features/products/components/Page/ProductsPage"
 import Contact from "./features/contact/Contact"
+import AddProductPage from "./admin/page/AddProductPage"
 
 const App: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const App: React.FC = () => {
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/about" element={<About/>}/>
             <Route path="contact" element={<Contact/>}/>
+            <Route path="/add" element={<AddProductPage/>}/>
           </Routes>
         </main>
 
