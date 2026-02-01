@@ -1,304 +1,296 @@
 <h1 align="center"> ZAYQ </h1>
-<p align="center"> A highly structured, scalable React and TypeScript framework for building modern, data-driven web applications and e-commerce platforms. </p>
+<p align="center"> A high-performance, component-based frontend for modern product catalogs and e-commerce platforms. </p>
 
 <p align="center">
-  <img alt="Build" src="https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge">
-  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-Strongly%20Typed-blue?style=for-the-badge&logo=typescript">
-  <img alt="Testing" src="https://img.shields.io/badge/Tests-Awaiting%20Integration-yellow?style=for-the-badge">
+  <img alt="Build Status" src="https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge">
   <img alt="License" src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge">
+  <img alt="Dependencies" src="https://img.shields.io/badge/Dependencies-Up%20to%20Date-blue?style=for-the-badge">
+  <img alt="Last Commit" src="https://img.shields.io/badge/Last%20Commit-2%20days%20ago-red?style=for-the-badge">
 </p>
 <!-- 
   **Note:** These are static placeholder badges. Replace them with your project's actual badges.
   You can generate your own at https://shields.io
 -->
 
-## 🗂️ Table of Contents
+## 📖 Table of Contents
 
-*   [Overview](#-overview)
-*   [Key Features](#-key-features)
-*   [Tech Stack & Architecture](#-tech-stack--architecture)
-*   [Project Structure](#-project-structure)
-*   [Getting Started](#-getting-started)
-*   [Usage](#-usage)
-*   [Contributing](#-contributing)
-*   [License](#-license)
+- [Overview](#-overview)
+- [Key Features](#-key-features)
+- [Tech Stack & Architecture](#-tech-stack--architecture)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Usage](#-usage)
+- [Contributing](#-contributing)
+- [License](#-license)
 
----
+## ⭐ Overview
 
-## 💡 Overview
-
-ZAYQ is a robust, pre-architected foundational template designed to accelerate the development of complex, component-based web applications. Utilizing modern best practices from React, TypeScript, and Vite, ZAYQ provides a professional, highly organized starting point, allowing development teams to bypass tedious initial setup and configuration. This framework is specifically structured to handle complex feature sets, including e-commerce (`shop`, `products`) and content delivery (`home`, `about`, `contact`), ensuring modularity and long-term maintainability.
+ZAYQ provides a fast, modern foundation for building product-centric web applications, offering advanced state management and intuitive user interfaces out-of-the-box for e-commerce platforms and digital catalogs.
 
 ### The Problem
 
-> Building large-scale, enterprise-ready frontend applications requires meticulous planning, adherence to strict architectural patterns, and the integration of diverse libraries for state management, data fetching, and styling. Developers often spend significant time setting up boilerplate code, configuring tooling (like ESLint and TypeScript), and establishing a scalable folder structure. This initial friction slows down time-to-market and often leads to inconsistent code quality across large teams. Without a strong foundation, managing global state, asynchronous data, and complex component interactions quickly becomes overwhelming.
+> Modern storefronts and product catalogs require complex state management, highly interactive components (like filtering and sorting), and seamless integration with backend services. Building these elements from scratch is time-consuming, often resulting in fragmented codebases and inconsistent user experiences. Developers need a reliable, modular system to handle the specifics of product display, searching, and navigation without reinventing core UI patterns.
 
 ### The Solution
 
-ZAYQ eliminates this initial development burden by delivering a fully configured and structurally sound **web application** template right out of the box. By adopting a **Component-based Architecture** and integrating industry-leading tools like Zustand for global state management and TanStack Query for server-side data synchronization, ZAYQ ensures performance, predictability, and ease of scaling. The template's feature-sliced directory layout forces modularity, making it simple for new contributors to understand and extend specific functional domains, such as the `products` or `home` features.
+ZAYQ addresses these challenges by offering a robust, **Component-based Architecture** built entirely with React and TypeScript, enhanced by Zustand for predictable, centralized product state management. It provides pre-built, production-ready components—including `ProductGrid`, `ProductToolbar`, and specialized pages like `ProductsPage`—allowing developers to rapidly deploy and scale their product catalog interfaces with minimal effort and maximum performance. This focus on modularity and type safety ensures the resulting application is highly maintainable and responsive.
 
 ### Architecture Overview
 
-ZAYQ is fundamentally a single-page application (SPA) built entirely on the client-side. The architecture adheres strictly to modern Component-based principles, powered by **React** for declarative UI construction. It leverages **Vite** for incredibly fast build and development speeds. The clear separation of concerns, managed through the `features/` directory, allows for highly independent and reusable modules, significantly improving code quality and testability.
-
----
+The application is structured around a sophisticated **Component-based Architecture** implemented with **React**, ensuring modularity, reusability, and strong separation of concerns across all features (e.g., Home, Shop, About, Contact). Data flow and state persistence are handled by **Zustand** and **TanStack Query**, providing a foundation for a high-performance user experience, while **Firebase** integration boilerplate allows for flexible backend connectivity. The entire system is built and optimized using **Vite** and deployed via **Vercel**.
 
 ## ✨ Key Features
 
-ZAYQ’s design focuses on enabling developers to build fast, type-safe, and visually appealing applications with minimum overhead.
+ZAYQ is designed to offer a superior user experience and simplified development workflow for managing product data interfaces:
 
-### 🧩 Pre-Configured Feature Modules
-The template includes established directories for core application domains, such as `shop`, `products`, `home`, `about`, and `contact`. This feature-sliced approach ensures code related to a specific domain (e.g., product hooks, services, and components) remains encapsulated, boosting development velocity and reducing potential side effects across features.
-
-### ⚡ Interactive User Interface with React
-ZAYQ is built on the robust **React** library, providing a foundation for highly responsive and fluid user interactions. The template comes equipped with essential UI building blocks, including the `Navbar.tsx`, `Footer.tsx`, and sophisticated sections like `HeroSection` and `ComingSoonSection`, accelerating the creation of a polished front-end experience.
-
-### 🔄 Advanced State and Data Management
-ZAYQ integrates two powerful data libraries to handle different types of state efficiently:
-*   **Persistent Global State (Zustand):** Provides a simple, fast, and scalable mechanism for managing application-wide state (e.g., user preferences, shopping cart details) without the complexity of traditional flux architectures.
-*   **Server State Synchronization (TanStack React Query):** Effortlessly manages asynchronous operations, providing intelligent caching, automatic background refetching, and state synchronization, drastically reducing boilerplate code required for handling loading, error, and data fetching states.
-
-### 📐 Comprehensive Type Safety (TypeScript & Zod)
-The entire codebase is written in **TypeScript**, enforcing strong typing across all components, hooks, and services. Furthermore, **Zod** is included for powerful, runtime schema validation. This combination ensures that both development and runtime data structures are consistent and reliable, virtually eliminating an entire class of common JavaScript errors.
-
-### 🎨 Modern and Accessible Styling
-Styling is managed using **Tailwind CSS**, allowing for utility-first, rapid UI development. Additionally, the project includes **Lucide-React**, a collection of beautiful, high-quality, and highly customizable open-source icons, ensuring consistency and visual appeal throughout the interactive user interface.
-
-### ⚙️ Optimized Development Experience
-Leveraging **Vite** as the build tool delivers blazing-fast hot module replacement (HMR) and optimized production builds. The configuration includes **ESLint** and **TypeScript** configuration files (`eslint.config.js`, `tsconfig.json`, `tsconfig.app.json`), providing immediate code quality checking and a stable development environment.
-
----
+*   **🔍 Advanced Product Discovery:** Intuitive interface components like the integrated `SearchBar` and `SortSelect` (found within the `ProductToolbar`) enable end-users to quickly locate and organize products based on specific criteria. This significantly enhances the product discovery and filtering process.
+*   **⚡ High-Performance State Management:** Leveraging **Zustand** for centralized, global state via the `product.store.ts`, the application ensures rapid data updates and minimizes component re-renders. This results in a snappy, responsive feel, especially when dealing with complex filters or large catalogs.
+*   **🧱 Modular & Reusable Component Library:** Core layout and functionality pieces—such as `ProductGrid`, `ProductCard`, `ProductFilters`, and dedicated `ProductsPage`—are built as isolated React components. This structure simplifies development, promotes customization, and guarantees visual and functional consistency across the entire application.
+*   **📦 Seamless Backend Connectivity:** Built-in boilerplate (`src/lib/firebase.ts`) allows for easy, initial integration with a Firebase backend. This setup facilitates scalable data storage and efficient retrieval of product information, supporting rapid prototyping of full-stack product apps.
+*   **📚 Clear Navigation and Layout:** The system includes professionally structured layout components (`Navbar`, `Footer`) and specialized navigation tools, such as `Pagination.tsx`, designed to handle navigation within large product catalogs efficiently, greatly improving the user journey flow and reducing load times.
+*   **🛡️ Enhanced Code Quality with TypeScript:** The entire codebase is written in **TypeScript** and validated using **Zod** for schema validation. This commitment to strict typing drastically reduces runtime errors and provides robust data integrity assurance for all product models.
 
 ## 🛠️ Tech Stack & Architecture
 
-ZAYQ is meticulously constructed using a modern, opinionated, and highly performant technical stack.
+This project is built using modern, industry-leading technologies to ensure high performance, maintainability, and scalability.
 
 | Technology | Purpose | Why it was Chosen |
 | :--- | :--- | :--- |
-| **Frontend** | | |
-| **React (v19)** | Declarative, component-based user interface library. | Leading industry standard for high-performance and maintainable SPAs. |
-| **TypeScript (TS)** | Application Language | Provides strong static typing, improving code quality, readability, and maintainability across large codebases. |
-| **Zustand** | State Management | Simple, fast, and scalable solution for managing global application state with minimal overhead. |
-| **TanStack React Query** | Server State Management | Provides robust data fetching, caching, synchronization, and automatic background updates for server-side data. |
-| **Lucide-React** | Icon Library | High-quality, customizable, and accessible icons for professional UI design. |
-| **Zod** | Schema Validation | Type-safe schema definition and validation, ensuring data integrity at runtime. |
-| **Styling** | | |
-| **Tailwind CSS** | Utility-First CSS Framework | Enables rapid, component-based styling directly within the markup, accelerating UI development. |
-| **Tooling** | | |
-| **Vite** | Build Tool & Dev Server | Extremely fast, next-generation frontend tooling that significantly enhances the development experience (HMR, optimized bundles). |
-| **ESLint** | Code Linting | Enforces consistent code style and identifies potential programming errors early in the development cycle. |
-
----
+| **Frontend Framework** | React (v19) | The industry-standard library for building robust, scalable, and highly interactive user interfaces using a component-based paradigm. |
+| **Primary Language** | TypeScript (TS) | Provides strong typing throughout the codebase, drastically improving code quality, reducing runtime errors, and enhancing maintainability across a complex component hierarchy. |
+| **State Management** | Zustand | A fast, light, and scalable state management solution that provides predictable and centralized state (`product.store.ts`) for complex product features like filtering and search. |
+| **Styling/Design** | Tailwind CSS / `@tailwindcss/vite` | Utility-first CSS framework enabling rapid UI development and ensuring a highly customizable, modern design system with minimal overhead. |
+| **Data Fetching** | TanStack Query | Powerful asynchronous state management (caching, synchronization, and deduplication) specifically for handling complex product data fetching from APIs or Firebase. |
+| **Routing** | React Router DOM | The preferred, declarative routing solution, managing client-side navigation between key feature pages (Home, Shop, Product Detail). |
+| **Build Tool** | Vite | A next-generation frontend toolchain offering extremely fast development server startup and optimized, production-ready builds. |
+| **Database Integration** | Firebase | Provides foundational support (`src/lib/firebase.ts`) for integrating with Google's Firebase services, which is often used for fast, scalable, real-time backend data storage. |
+| **Deployment** | Vercel | Optimized platform for deploying modern web applications, facilitating instantaneous global deployment and streamlined continuous integration via `vercel.json`. |
+| **Schema Validation** | Zod | TypeScript-first schema validation library used for defining and validating data structures, ensuring data integrity for API responses and internal product data models. |
 
 ## 📁 Project Structure
 
-The project employs a clear, feature-sliced organizational strategy, making the application modular, scalable, and easy to navigate. Key domains are isolated within the `src/features/` directory.
+This project adopts a Feature-Driven component-based architecture, promoting strict modularity by grouping related components, hooks, and services under specific feature directories (e.g., `features/products`, `features/home`).
 
 ```
-📂 BeyteFlow-ZAYQ-b9ed2ea/
-├── 📄 .gitignore                 # Files ignored by Git
-├── 📄 index.html                 # Main HTML entry point
-├── 📄 package.json               # Node.js dependencies and project scripts (dev, build, lint, preview)
+📂 BeyteFlow-ZAYQ-7960d6d/
+├── 📄 .gitignore                 # Files and directories ignored by Git
+├── 📄 eslint.config.js           # Configuration for ESLint static analysis
+├── 📄 index.html                 # Main entry point for the application
+├── 📄 package.json               # Project dependencies and npm scripts
 ├── 📄 package-lock.json          # Dependency lock file
 ├── 📄 README.md                  # Project documentation (this file)
-├── 📄 vite.config.ts             # Vite build configuration (uses TypeScript)
-├── 📄 eslint.config.js           # ESLint configuration for code quality
-├── 📄 tsconfig.json              # TypeScript root configuration
-├── 📄 tsconfig.app.json          # TypeScript configuration specific to the application source files
-├── 📄 tsconfig.node.json         # TypeScript configuration specific to Node environment files (e.g., Vite config)
-├── 📂 .github/                   # GitHub configuration
-│   └── 📂 workflows/             # Continuous integration workflows
-│       └── 📄 ci.yml             # GitHub Actions CI pipeline configuration
+├── 📄 tsconfig.app.json          # TypeScript configuration for the application build
+├── 📄 tsconfig.json              # Base TypeScript configuration
+├── 📄 tsconfig.node.json         # TypeScript configuration for Node environment tasks (e.g., Vite config)
+├── 📄 vercel.json                # Configuration file for Vercel deployment settings
+├── 📄 vite.config.ts             # Configuration for the Vite build tool
+├── 📂 .github/                   # GitHub configuration files
+│   └── 📂 workflows/             # GitHub Actions workflows
+│       └── 📄 ci.yml             # Continuous Integration pipeline definition
 ├── 📂 public/                    # Static assets
 │   └── 📄 vite.svg               # Vite logo asset
 └── 📂 src/                       # Application source code
-    ├── 📄 main.tsx               # Main entry point: Renders the React App
-    ├── 📄 index.css              # Global styles
-    ├── 📄 App.tsx                # Root component definition
-    ├── 📂 assets/                # Images and static media
+    ├── 📄 App.tsx                # Main application router and context provider component
+    ├── 📄 index.css              # Global styles sheet
+    ├── 📄 main.tsx               # Primary entry point (initializes React rendering)
+    ├── 📂 assets/                # Static assets used within components
     │   └── 📄 react.svg          # React logo asset
-    ├── 📂 components/            # Shared, reusable UI components
-    │   ├── 📂 layout/            # Layout specific components
-    │   │   ├── 📄 Footer.tsx     # Global application footer
-    │   │   └── 📄 Navbar.tsx     # Global navigation bar
-    │   └── 📂 ui/                # Generic, lower-level UI primitives
+    ├── 📂 components/            # Reusable UI components
+    │   ├── 📂 layout/            # Layout components (structure)
+    │   │   ├── 📄 Footer.tsx     # Site-wide footer component
+    │   │   └── 📄 Navbar.tsx     # Site-wide navigation bar component
+    │   └── 📂 ui/                # Generic, lower-level UI elements (e.g., Buttons, Inputs)
     │       └── 📄 .gitkeep
-    ├── 📂 hooks/                 # Reusable custom React hooks
-    │   └── 📄 .gitkeep
-    ├── 📂 lib/                   # Third-party utility wrappers or specialized libraries
-    │   └── 📄 .gitkeep
-    ├── 📂 features/              # Modular, feature-sliced architecture
-    │   ├── 📂 about/             # About page and related components
+    ├── 📂 features/              # Feature-specific components and logic organized by user flow
+    │   ├── 📂 about/             # About page feature
     │   │   └── 📄 About.tsx      # The About page component
-    │   ├── 📂 contact/           # Contact page and related components
+    │   ├── 📂 contact/           # Contact page feature
     │   │   └── 📄 Contact.tsx    # The Contact page component
-    │   ├── 📂 home/              # Homepage feature module
-    │   │   ├── 📄 Homepage.tsx   # Main Homepage component
-    │   │   ├── 📂 components/    # Components specific to the Homepage
-    │   │   │   ├── 📄 ComingSoonSection.tsx # Section indicating upcoming content
-    │   │   │   ├── 📄 HeroSection.tsx       # Main introductory section
-    │   │   │   ├── 📄 CasesSection.tsx      # Section for presenting case studies/examples
-    │   │   │   └── 📄 TaglineSection.tsx    # Marketing tagline section
-    │   │   ├── 📂 hooks/         # Homepage-specific custom hooks
+    │   ├── 📂 home/              # Homepage feature
+    │   │   ├── 📄 Homepage.tsx   # The main application landing page
+    │   │   ├── 📂 components/    # Components specific to the homepage layout
+    │   │   │   ├── 📄 CasesSection.tsx
+    │   │   │   ├── 📄 ComingSoonSection.tsx
+    │   │   │   ├── 📄 HeroSection.tsx
+    │   │   │   └── 📄 TaglineSection.tsx
+    │   │   ├── 📂 hooks/
     │   │   │   └── 📄 .gitkeep
-    │   │   └── 📂 services/      # Homepage data fetching services
+    │   │   └── 📂 services/
     │   │       └── 📄 .gitkeep
-    │   ├── 📂 products/          # E-commerce Products feature module (structured for scalability)
-    │   │   ├── 📂 components/    # Product UI components (e.g., ProductCard)
+    │   ├── 📂 ProductDetail/     # Individual product detail view feature
+    │   │   ├── 📂 hooks/
+    │   │   │   └── 📄 useProductDetail.ts # Custom hook for fetching and managing product data
+    │   │   └── 📂 types/
+    │   │       └── 📄 index.ts
+    │   ├── 📂 products/          # Core product listing, filtering, and management features
+    │   │   ├── 📂 components/
+    │   │   │   ├── 📂 Page/
+    │   │   │   │   └── 📄 ProductsPage.tsx  # The main product listing view
+    │   │   │   ├── 📂 Pagination/
+    │   │   │   │   └── 📄 Pagination.tsx    # Component for navigating large product lists
+    │   │   │   ├── 📂 ProductFilters/
+    │   │   │   │   └── 📄 ProductFilters.tsx # Filtering interface (e.g., price, category)
+    │   │   │   ├── 📂 ProductGrid/
+    │   │   │   │   ├── 📄 ProductCard.tsx   # Individual product representation component
+    │   │   │   │   └── 📄 ProductGrid.tsx   # Layout component for displaying multiple products
+    │   │   │   └── 📂 ProductToolbar/       # Controls for product interaction (Search/Sort)
+    │   │   │       ├── 📄 ProductToolbar.tsx
+    │   │   │       ├── 📄 SearchBar.tsx
+    │   │   │       └── 📄 SortSelect.tsx    # Component for sorting products (e.g., price, name)
+    │   │   ├── 📂 hooks/
     │   │   │   └── 📄 .gitkeep
-    │   │   ├── 📂 hooks/         # Product-specific data hooks
+    │   │   ├── 📂 services/
     │   │   │   └── 📄 .gitkeep
-    │   │   ├── 📂 services/      # Product API interaction logic
-    │   │   │   └── 📄 .gitkeep
-    │   │   └── 📂 types/         # TypeScript types and Zod schemas for Product data
+    │   │   └── 📂 types/
     │   │       └── 📄 .gitkeep
-    │   └── 📂 shop/              # E-commerce Shop feature module (e.g., cart, checkout)
+    │   └── 📂 shop/
     │       └── 📄 .gitkeep
-    ├── 📂 styles/                # Supplementary or modular style files
+    ├── 📂 hooks/
     │   └── 📄 .gitkeep
-    └── 📂 utils/                 # General utility functions and helpers
+    ├── 📂 lib/                   # External library configurations and initializations
+    │   └── 📄 firebase.ts        # Initialization and configuration file for Firebase SDK
+    ├── 📂 pages/
+    │   └── 📄 .gitkeep
+    ├── 📂 store/                 # Global application state management (Zustand)
+    │   └── 📄 product.store.ts   # Dedicated store for product data and catalog state
+    ├── 📂 styles/
+    │   └── 📄 .gitkeep
+    └── 📂 utils/                 # General utility functions
         └── 📄 .gitkeep
 ```
 
----
-
 ## 🚀 Getting Started
 
-To get ZAYQ running locally, you only need Node.js and the `npm` package manager. This setup leverages Vite for speed and TypeScript for reliability.
+Follow these steps to set up the ZAYQ development environment locally.
 
 ### Prerequisites
 
-Ensure you have the following installed on your local machine:
+Ensure you have the necessary environment for running a modern TypeScript-based React application:
 
-*   [Node.js](https://nodejs.org/en/) (LTS recommended)
-*   [npm](https://www.npmjs.com/) (installed with Node.js)
-*   A code editor with strong **TypeScript** support (e.g., VS Code).
+-   **Node.js:** (A recent stable version is recommended)
+-   **npm:** Node Package Manager (comes bundled with Node.js)
+-   **TypeScript:** The codebase is fully written in TypeScript (v5.x).
 
 ### Installation
 
-Follow these steps to clone the repository and install all necessary dependencies:
+Clone the repository and install the required dependencies using `npm`.
 
 1.  **Clone the repository:**
+
     ```bash
-    git clone https://github.com/your-username/zayq.git
-    cd zayq
+    git clone [repository-url] BeyteFlow-ZAYQ-7960d6d
+    cd BeyteFlow-ZAYQ-7960d6d
     ```
 
-2.  **Install Dependencies:**
-    Use `npm` to install all required production and development dependencies, including React, TypeScript, and the configured build tools.
+2.  **Install dependencies:**
+
     ```bash
     npm install
     ```
 
-3.  **Verify Configuration:**
-    The project is pre-configured with `tsconfig.json` for TypeScript settings and `eslint.config.js` for code standards. You can verify your setup by running the linting script:
-    ```bash
-    npm run lint
-    ```
-    This command will check the entire codebase against the defined TypeScript and ESLint rules, ensuring code quality before starting development.
+3.  **Configure Environment (Optional but Recommended):**
 
----
+    The project includes `src/lib/firebase.ts`. If you plan to connect the application to a live backend service or database to fetch product data, ensure this file is configured with your specific Firebase project credentials following the official SDK documentation.
+
+### Development Scripts
+
+The `package.json` file defines several convenient scripts for local development, building, and code quality maintenance:
+
+| Script | Command | Description |
+| :--- | :--- | :--- |
+| `dev` | `vite` | Starts the local development server (using Vite) with hot module replacement (HMR). This is the primary command for local development. |
+| `build` | `tsc -b && vite build` | Runs TypeScript compilation (`tsc -b`) to check for type errors and then performs a highly optimized production build of all assets using Vite. The output is placed in the `dist` directory. |
+| `lint` | `eslint .` | Executes ESLint across the entire project to enforce strict code standards, identify potential bugs, and ensure consistency. |
+| `preview` | `vite preview` | Locally serves the optimized production build (`dist` directory) for final pre-deployment testing and performance review. |
 
 ## 🔧 Usage
 
-ZAYQ is a **web application** designed for interactive user interaction. Once the local environment is set up, you can start the development server to access the front-end application.
+ZAYQ is designed as an interactive user interface (web\_app) for displaying product catalogs and running on a modern web browser.
 
-### Development Mode
+### Starting the Application
 
-The primary way to work with ZAYQ is through the Vite development server, which offers fast compilation and Hot Module Replacement (HMR).
+To launch the application in development mode:
 
-1.  **Start the Development Server:**
-    Execute the following command in your terminal. This compiles the TypeScript code, bundles the assets, and starts the server.
-    ```bash
-    npm run dev
-    ```
-    The console output will provide a local URL (typically `http://localhost:5173/` or similar).
+```bash
+npm run dev
+```
 
-2.  **Access the Interactive UI:**
-    Open your web browser and navigate to the URL provided. You will be greeted by the interactive React user interface, featuring core components like the `Navbar` and `Footer`, and the initial content defined within the `Homepage.tsx`.
+This command initiates the Vite server, which handles compiling the TypeScript and JSX files. Once started, navigate to the URL provided in the console (typically `http://localhost:5173`) to view the application, including the `Homepage`, `ProductsPage`, and the various product components.
 
-3.  **Key Interaction Points:**
-    The application structure already includes several key pages that demonstrate the feature structure:
-    *   **Homepage:** Defined by `src/features/home/Homepage.tsx`, showcasing sections like the `HeroSection` and `ComingSoonSection`.
-    *   **About Page:** Accessed via the `About.tsx` component.
-    *   **Contact Page:** Accessed via the `Contact.tsx` component.
-    
-    You can immediately begin customizing these components and integrating your data fetching logic using the provided TanStack Query setup within the `src/features/*/services/` directories.
+### Feature Navigation
 
-### Production Build
+The application exposes several feature components ready for use:
 
-When you are ready to deploy your application, use the build script. This command performs a type check (`tsc -b`) and then bundles and optimizes the application for production delivery.
+*   **Product Listings:** Accessible via the logic routing to `ProductsPage.tsx`, displaying products using `ProductGrid` and controllable by `ProductToolbar` elements (`SearchBar`, `SortSelect`).
+*   **Product Details:** Individual product pages are managed by feature logic utilizing the `useProductDetail.ts` hook for specific data fetching.
+*   **Layout:** Consistent navigation is provided by the `Navbar.tsx` and `Footer.tsx` components.
 
-1.  **Create Optimized Production Assets:**
-    ```bash
-    npm run build
-    ```
-    This command generates the static, optimized files in the `dist/` directory, ready for serving by any static hosting provider.
+### Production Build and Deployment
 
-2.  **Preview the Production Build (Locally):**
-    To test the optimized production bundle before deploying, use the preview script:
-    ```bash
-    npm run preview
-    ```
-    This starts a small static file server hosting the contents of the `dist/` folder, allowing you to verify the performance and functionality of the final build.
+For preparing the application for deployment (e.g., to Vercel), execute the build script:
 
----
+```bash
+npm run build
+```
+
+The compiled and optimized files will be located in the `dist/` directory, ready to be hosted as static assets. The inclusion of `vercel.json` provides out-of-the-box configuration for seamless continuous deployment on the Vercel platform.
 
 ## 🤝 Contributing
 
-We welcome contributions to improve ZAYQ! Your input helps make this project better for everyone, ensuring it remains a state-of-the-art foundation for modern web development.
+We welcome contributions to improve ZAYQ! Your input helps make this project better for everyone, especially in enhancing the core product catalog features and performance.
 
 ### How to Contribute
 
-1. **Fork the repository** - Click the 'Fork' button at the top right of this page.
-2. **Create a feature branch** - Base your work off the `main` branch.
-   ```bash
-   git checkout -b feature/new-scalable-hook
-   ```
-3. **Make your changes** - Improve code, documentation, or enhance existing features within their respective feature modules (e.g., adding to `products/hooks/`).
-4. **Test thoroughly** - Ensure all functionality works as expected and existing features remain stable.
-5. **Commit your changes** - Write clear, descriptive commit messages focusing on the nature of the change (e.g., `Refactor: Simplify product fetching logic`).
-   ```bash
-   git commit -m 'Feat: Implement dynamic product filtering component'
-   ```
-6. **Push to your branch**
-   ```bash
-   git push origin feature/new-scalable-hook
-   ```
-7. **Open a Pull Request** - Submit your changes for review against the main repository.
+1.  **Fork the repository** - Click the 'Fork' button at the top right of this page.
+2.  **Create a feature branch** 
+    ```bash
+    git checkout -b feature/amazing-product-feature
+    ```
+3.  **Make your changes** - Improve code, documentation, or product features (e.g., enhancing `ProductToolbar` or optimizing `product.store.ts`).
+4.  **Test thoroughly** - Ensure all functionality works as expected. Run type checks and linting before submitting:
+    ```bash
+    npm run lint
+    npm run build # To verify successful type compilation
+    ```
+5.  **Commit your changes** - Write clear, descriptive commit messages.
+    ```bash
+    git commit -m 'Feat: Improved filtering logic in ProductFilters component for performance'
+    ```
+6.  **Push to your branch**
+    ```bash
+    git push origin feature/amazing-product-feature
+    ```
+7.  **Open a Pull Request** - Submit your changes for review against the main branch.
 
 ### Development Guidelines
 
-- ✅ Follow the existing component-based architecture and feature-sliced conventions.
-- 📝 Add comments for complex logic, especially within data services and custom hooks.
-- 🧪 Strive to maintain 100% type safety using TypeScript and Zod where appropriate.
-- 📚 Update documentation (including this README, if relevant) for any changed or added functionality.
-- 🔄 Ensure backward compatibility when modifying core features or shared component interfaces.
-- 🎯 Keep commits focused and atomic, addressing one feature or fix per pull request.
+-   ✅ Follow the existing Component-based Architecture and strict TypeScript conventions.
+-   📝 Add comments, particularly for complex state logic within Zustand stores or data handling hooks.
+-   📚 Update documentation (including component READMEs or props documentation) for any changed functionality.
+-   🔄 Ensure backward compatibility when modifying core features like routing or Firebase connections.
+-   🎯 Keep commits focused and atomic, addressing a single feature or bug fix per PR.
 
 ### Ideas for Contributions
 
-We're actively seeking help in the following areas:
+We're actively seeking help with:
 
-- 🐛 **Bug Fixes:** Report and resolve issues identified during development or testing.
-- ✨ **New Features:** Implement advanced components for the `shop/` or `products/` modules.
-- 📖 **Documentation:** Improve component documentation or add detailed architectural walkthroughs.
-- 🎨 **UI/UX:** Enhance the user interface and interactions of the pre-built components like the `Navbar` and `Footer`.
-- ⚡ **Performance:** Optimize the React rendering pipeline or TanStack Query configuration for better efficiency.
-- 🧪 **Testing:** Integrate a testing framework and begin adding unit and integration tests to the codebase.
+-   🐛 **Bug Fixes:** Report and fix display bugs within the UI components (e.g., in `ProductGrid` or `ProductCard`).
+-   ✨ **New Features:** Implement advanced features, such as multi-layered filtering in `ProductFilters` or persistent shopping cart state.
+-   📖 **Documentation:** Improve component documentation and usage examples for easier onboarding.
+-   🎨 **UI/UX:** Enhance the visual appeal and usability of core product interaction components (`SearchBar`, `Pagination`).
+-   ⚡ **Performance:** Optimize data fetching using TanStack Query or streamline state computations in the `product.store.ts`.
+-   ♿ **Accessibility:** Make the product list and detail pages fully accessible according to WCAG standards.
 
 ### Code Review Process
 
-- All submissions require review by a project maintainer before merging.
-- Maintainers will provide constructive feedback focused on quality and architectural adherence.
-- Changes may be requested before approval, focusing on type safety and architectural consistency.
-- Once approved, your Pull Request will be merged, and you will be fully credited for your contribution.
+-   All submissions require review by maintainers before merging.
+-   Maintainers will provide constructive feedback focused on type safety, component design, and performance implications.
+-   Changes may be requested before final approval.
+-   Once approved, your PR will be merged and you'll be credited for your contribution.
 
 ### Questions?
 
-Feel free to open an issue for any questions or concerns regarding the project structure, usage, or contribution process. We are here to help you get started!
-
----
+Feel free to open an issue for any questions or concerns regarding the product architecture or specific component usage. We're here to help!
 
 ## 📝 License
 
@@ -306,12 +298,12 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ### What this means:
 
-- ✅ **Commercial use:** You are permitted to use this project, in whole or in part, for commercial purposes.
-- ✅ **Modification:** You have the right to modify the source code to suit your specific needs.
-- ✅ **Distribution:** You may distribute copies of the software.
-- ✅ **Private use:** You can use this project for private, non-commercial purposes.
-- ⚠️ **Liability:** The software is provided "as is," without warranty of any kind. The authors or copyright holders are not liable for any claims, damages, or other liability arising from its use.
-- ⚠️ **Trademark:** This license does not grant rights to use the project’s name, logos, or trademarks.
+-   ✅ **Commercial use:** You can use this project commercially (e.g., as the foundation for a paid e-commerce frontend).
+-   ✅ **Modification:** You can modify the code to fit your specific product catalog needs and build upon the existing architecture.
+-   ✅ **Distribution:** You can distribute this software.
+-   ✅ **Private use:** You can use this project privately for internal applications.
+-   ⚠️ **Liability:** The software is provided "as is," without warranty of any kind.
+-   ⚠️ **Trademark:** This license does not grant trademark rights.
 
 ---
 
