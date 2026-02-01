@@ -1,17 +1,18 @@
-import React, { useMemo, useEffect } from "react";
-import { useProductStore } from "../../../../store/product.store";
+import React, { useEffect } from "react";
+import { useProductStore, type Product } from "../../../../store/product.store";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "../../../../lib/firebase";
 import ProductToolbar from "../ProductToolbar/ProductToolbar";
 import ProductGrid from "../ProductGrid/ProductGrid";
 import ProductFilters from "../ProductFilters/ProductFilters";
-import type{ Product } from "../../../../store/product.store";
+import Pagination from "../Pagination/Pagination";
 
 const ProductsPage: React.FC = () => {
-  const { products, setProducts, searchQuery, sortBy, selectedCategory } = useProductStore();
+  const { setProducts, getFilteredProducts, currentPage } = useProductStore();
+  const ITEMS_PER_PAGE = 8;
 
+  // 1. Sync with Firebase
   useEffect(() => {
-    // Listen to Firebase "products" collection
     const q = query(collection(db, "products"));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const liveData = snapshot.docs.map(doc => ({
@@ -23,15 +24,10 @@ const ProductsPage: React.FC = () => {
     return () => unsubscribe();
   }, [setProducts]);
 
-  const filteredProducts = useMemo(() => {
-    let result = [...products];
-    if (searchQuery) result = result.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()));
-    if (selectedCategory !== 'All') result = result.filter(p => p.category === selectedCategory);
-    
-    if (sortBy === 'price-asc') result.sort((a, b) => a.price - b.price);
-    if (sortBy === 'price-desc') result.sort((a, b) => b.price - a.price);
-    return result;
-  }, [products, searchQuery, sortBy, selectedCategory]);
+  // 2. Get Filtered Data and Slice for Pagination
+  const filteredData = getFilteredProducts();
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const currentItems = filteredData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
     <div className="min-h-screen bg-[#F6F4F1] px-6 py-12 md:py-24">
@@ -50,10 +46,16 @@ const ProductsPage: React.FC = () => {
             <ProductFilters />
           </div>
           <div className="flex-1">
-            {products.length === 0 ? (
-                <div className="flex justify-center py-20 animate-pulse text-gray-400">Loading live collection...</div>
+            {filteredData.length === 0 ? (
+                <div className="flex flex-col items-center justify-center py-20 text-center">
+                    <p className="text-xl font-bold text-[#111111]">No cases found</p>
+                    <p className="text-[#8F8F8F]">Try adjusting your filters or search.</p>
+                </div>
             ) : (
-                <ProductGrid products={filteredProducts} />
+                <>
+                  <ProductGrid products={currentItems} />
+                  <Pagination />
+                </>
             )}
           </div>
         </div>

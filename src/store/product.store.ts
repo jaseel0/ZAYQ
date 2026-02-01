@@ -1,14 +1,15 @@
 import { create } from 'zustand'
 
 export interface Product {
-  id: string; // Changed to string for Firebase compatibility
+  id: string;
   name: string;
   price: number;
   category: string;
-  imageUrl: string; // Added for your product images
-  status: 'in-stock' | 'out-of-stock' | 'coming-soon'; // PRD Section 9
+  imageUrl: string;
+  status: 'in-stock' | 'out-of-stock' | 'coming-soon';
   type: 'matte' | 'clear' | 'leather';
   isFeatured?: boolean;
+  description?: string;
 }
 
 type SortBy = 'featured' | 'price-asc' | 'price-desc'
@@ -27,8 +28,9 @@ interface ProductState {
   setSelectedCategory: (c: string) => void;
   setCurrentPage: (p: number) => void;
   
-  // Getter for filtered products
+  // Logic Getters
   getFilteredProducts: () => Product[];
+  getTotalPages: (itemsPerPage: number) => number;
 }
 
 export const useProductStore = create<ProductState>((set, get) => ({
@@ -44,7 +46,6 @@ export const useProductStore = create<ProductState>((set, get) => ({
   setSelectedCategory: (c) => set({ selectedCategory: c, currentPage: 1 }),
   setCurrentPage: (p) => set({ currentPage: p }),
 
-  // Logic to filter and sort products in one place
   getFilteredProducts: () => {
     const { products, searchQuery, selectedCategory, sortBy } = get();
     
@@ -60,5 +61,10 @@ export const useProductStore = create<ProductState>((set, get) => ({
         if (sortBy === 'featured') return a.isFeatured === b.isFeatured ? 0 : a.isFeatured ? -1 : 1;
         return 0;
       });
+  },
+
+  getTotalPages: (itemsPerPage) => {
+    const filteredCount = get().getFilteredProducts().length;
+    return Math.ceil(filteredCount / itemsPerPage) || 1;
   },
 }))
