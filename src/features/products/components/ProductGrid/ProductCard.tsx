@@ -8,7 +8,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
     const handleBuyNow = () => {
         if (isComingSoon || isOutOfStock) return;
         const message = encodeURIComponent(`Hi ZAYQ! I'm interested in the ${product.name} (₹${product.price}). Is it in stock?`);
-        window.open(`https://wa.me/91XXXXXXXXXX?text=${message}`, '_blank'); // Replace with your WhatsApp number
+        window.open(`https://wa.me/917306912910?text=${message}`, '_blank'); // Replace with your WhatsApp number
     };
 
     return (
