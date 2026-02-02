@@ -1,20 +1,33 @@
-import React from 'react';
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const Footer: React.FC = () => {
+  const { pathname } = useLocation();
+
+  const linkClass = (path: string) =>
+    `transition-colors ${pathname === path
+      ? "text-black font-semibold"
+      : "text-gray-600 hover:text-black"
+    }`;
+
   return (
     <footer className="w-full bg-[#f4f4f4] pt-16 pb-8 px-6 md:px-12 border-t border-gray-200">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 md:gap-8 mb-16">
-          
+
           {/* Shop Column */}
           <div>
             <h3 className="font-bold text-[#1a1a1a] mb-6">Shop</h3>
             <ul className="space-y-4">
               <li>
-                <a href="#" className="text-gray-600 hover:text-black transition-colors">Cases</a>
+                <Link to="/products" className={linkClass("/products")}>
+                  Cases
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-600 hover:text-black transition-colors">FAQs</a>
+                <Link to="/faqs" className={linkClass("/faqs")}>
+                  FAQs
+                </Link>
               </li>
             </ul>
           </div>
@@ -24,10 +37,14 @@ const Footer: React.FC = () => {
             <h3 className="font-bold text-[#1a1a1a] mb-6">Info</h3>
             <ul className="space-y-4">
               <li>
-                <a href="#" className="text-gray-600 hover:text-black transition-colors">About</a>
+                <Link to="/about" className={linkClass("/about")}>
+                  About
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-600 hover:text-black transition-colors">Contact</a>
+                <Link to="/contact" className={linkClass("/contact")}>
+                  Contact
+                </Link>
               </li>
             </ul>
           </div>
@@ -69,8 +86,12 @@ const Footer: React.FC = () => {
             © 2024 ZAYQ. All rights reserved.
           </div>
           <div className="flex space-x-8 order-1 md:order-2">
-            <a href="#" className="hover:text-black transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-black transition-colors">Terms & Conditions</a>
+            <Link to="/privacy-policy" className="hover:text-black transition-colors">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="hover:text-black transition-colors">
+              Terms & Conditions
+            </Link>
           </div>
         </div>
       </div>
