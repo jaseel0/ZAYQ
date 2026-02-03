@@ -8,7 +8,7 @@ import Homepage from "./features/home/Homepage"
 import ProductsPage from "./features/products/components/Page/ProductsPage"
 import Contact from "./features/contact/Contact"
 import AddProductPage from "./admin/page/AddProductPage"
-
+import NotFound from "./pages/404Page"
 const App: React.FC = () => {
   return (
     <Router>
@@ -23,6 +23,7 @@ const App: React.FC = () => {
             <Route path="/about" element={<About/>}/>
             <Route path="contact" element={<Contact/>}/>
             <Route path="/add" element={<AddProductPage/>}/>
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
 
