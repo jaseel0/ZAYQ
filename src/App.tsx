@@ -9,6 +9,9 @@ import ProductsPage from "./features/products/components/Page/ProductsPage"
 import Contact from "./features/contact/Contact"
 import AddProductPage from "./admin/page/AddProductPage"
 import NotFound from "./pages/404Page"
+import PrivacyPolicy from "./features/legal/PrivacyPolicy"
+import RefundPolicy from "./features/legal/RefundPolicy"
+import TermsOfService from "./features/legal/TermsOfService"
 const App: React.FC = () => {
   return (
     <Router>
@@ -24,6 +27,9 @@ const App: React.FC = () => {
             <Route path="contact" element={<Contact/>}/>
             <Route path="/add" element={<AddProductPage/>}/>
             <Route path="*" element={<NotFound />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />  
+            <Route path="/refund-policy" element={<RefundPolicy />} />  
+            <Route path="/terms-of-service" element={<TermsOfService />} />
           </Routes>
         </main>
 

@@ -17,7 +17,7 @@ const NotFound: React.FC = () => {
                 <h3 className="text-2xl md:text-3xl font-normal text-[#1A1A1A] mb-4">
                     This path wasn't chosen with intention.
                 </h3>
-
+ 
                 <p className="text-[#555555] max-w-md mx-auto mb-10 leading-relaxed">
                     The page you are looking for doesn't exist or has been moved.
                     Let's get you back to where things feel right.
@@ -26,7 +26,7 @@ const NotFound: React.FC = () => {
                 {/* The ZAYQ Signature Button Style */}
                 <a
                     href="/"
-                    className="inline-block bg-[#1A1A1A] text-[#F7F7F7] px-10 py-3 text-sm font-medium tracking-wide rounded-[4px] transition-opacity hover:opacity-90"
+                    className="inline-block bg-[#1A1A1A] text-[#F7F7F7] px-10 py-3 text-sm font-medium tracking-wide rounded-sm transition-opacity hover:opacity-90"
                 >
                     Back to Home
                 </a>
