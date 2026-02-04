@@ -32,11 +32,14 @@ const ProductsPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#F6F4F1] px-6 py-12 md:py-24">
       <div className="max-w-7xl mx-auto">
+        {/* Header Section */}
         <div className="mb-20 text-center md:text-left">
-          <h1 className="text-6xl md:text-8xl font-black text-[#111111] tracking-tight">
-            ZAYQ<span className="text-[#8F8F8F]">CASE</span>
+          <h1 className="text-6xl md:text-8xl font-black text-[#3D1A12] tracking-tight">
+            ZAYQ<span className="text-[#3D1A12]/30">CASE</span>
           </h1>
-          <p className="mt-4 text-[#8F8F8F] font-bold uppercase tracking-[0.4em] text-xs">Essential Protection Series</p>
+          <p className="mt-4 text-[#3D1A12]/50 font-bold uppercase tracking-[0.4em] text-xs">
+            Essential Protection Series
+          </p>
         </div>
 
         <ProductToolbar />
@@ -48,8 +51,8 @@ const ProductsPage: React.FC = () => {
           <div className="flex-1">
             {filteredData.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-20 text-center">
-                    <p className="text-xl font-bold text-[#111111]">No cases found</p>
-                    <p className="text-[#8F8F8F]">Try adjusting your filters or search.</p>
+                    <p className="text-xl font-bold text-[#3D1A12]">No cases found</p>
+                    <p className="text-[#3D1A12]/40">Try adjusting your filters or search.</p>
                 </div>
             ) : (
                 <>
