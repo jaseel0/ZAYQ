@@ -49,18 +49,23 @@ export const useProductStore = create<ProductState>((set, get) => ({
   getFilteredProducts: () => {
     const { products, searchQuery, selectedCategory, sortBy } = get();
     
-    return products
-      .filter((p) => {
-        const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
-        const matchesCategory = selectedCategory === 'All' || p.category === selectedCategory;
-        return matchesSearch && matchesCategory;
-      })
-      .sort((a, b) => {
-        if (sortBy === 'price-asc') return a.price - b.price;
-        if (sortBy === 'price-desc') return b.price - a.price;
-        if (sortBy === 'featured') return a.isFeatured === b.isFeatured ? 0 : a.isFeatured ? -1 : 1;
-        return 0;
-      });
+    // 1. Filter
+    const filtered = products.filter((p) => {
+      const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesCategory = selectedCategory === 'All' || p.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+    });
+
+    // 2. Sort
+    return [...filtered].sort((a, b) => {
+      if (sortBy === 'price-asc') return a.price - b.price;
+      if (sortBy === 'price-desc') return b.price - a.price;
+      if (sortBy === 'featured') {
+        if (a.isFeatured === b.isFeatured) return 0;
+        return a.isFeatured ? -1 : 1;
+      }
+      return 0;
+    });
   },
 
   getTotalPages: (itemsPerPage) => {

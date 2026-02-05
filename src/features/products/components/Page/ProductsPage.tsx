@@ -7,6 +7,9 @@ import ProductGrid from "../ProductGrid/ProductGrid";
 import ProductFilters from "../ProductFilters/ProductFilters";
 import Pagination from "../Pagination/Pagination";
 
+// Centralized Constant
+export const ITEMS_PER_PAGE = 6;
+
 const ProductsPage: React.FC = () => {
   const { setProducts, getFilteredProducts, currentPage } = useProductStore();
   const ITEMS_PER_PAGE = 6;
@@ -24,7 +27,7 @@ const ProductsPage: React.FC = () => {
     return () => unsubscribe();
   }, [setProducts]);
 
-  // 2. Get Filtered Data and Slice for Pagination
+  // 2. Pagination Logic
   const filteredData = getFilteredProducts();
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const currentItems = filteredData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
@@ -55,10 +58,10 @@ const ProductsPage: React.FC = () => {
                     <p className="text-[#3D1A12]/40">Try adjusting your filters or search.</p>
                 </div>
             ) : (
-                <>
-                  <ProductGrid products={currentItems} />
-                  <Pagination />
-                </>
+              <>
+                <ProductGrid products={currentItems} />
+                <Pagination />
+              </>
             )}
           </div>
         </div>

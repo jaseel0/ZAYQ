@@ -1,14 +1,19 @@
 import React from "react";
 import { useProductStore } from "../../../../store/product.store";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ITEMS_PER_PAGE } from "../Page/ProductsPage"; // Import constant
 
 const Pagination: React.FC = () => {
     const { currentPage, setCurrentPage, getTotalPages } = useProductStore();
-
-    const ITEMS_PER_PAGE = 8;
     const totalPages = getTotalPages(ITEMS_PER_PAGE);
 
+    // Hide if only one page exists
     if (totalPages <= 1) return null;
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     return (
         <div className="mt-32 flex items-center justify-center gap-8">
@@ -19,7 +24,7 @@ const Pagination: React.FC = () => {
                 }}
                 className="w-14 h-14 flex items-center justify-center rounded-full bg-white border border-[#3D1A12]/10 text-[#3D1A12] transition-all hover:bg-[#3D1A12] hover:text-white disabled:opacity-20"
                 disabled={currentPage === 1}
-                aria-label="left"
+                aria-label="Previous page"
             >
                 <ChevronLeft size={20} />
             </button>
@@ -46,7 +51,7 @@ const Pagination: React.FC = () => {
                 }}
                 className="w-14 h-14 flex items-center justify-center rounded-full bg-white border border-[#3D1A12]/10 text-[#3D1A12] transition-all hover:bg-[#3D1A12] hover:text-white disabled:opacity-20"
                 disabled={currentPage === totalPages}
-                aria-label="rigth"
+                aria-label="Next page"
             >
                 <ChevronRight size={20} />
             </button>
