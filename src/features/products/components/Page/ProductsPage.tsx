@@ -9,7 +9,7 @@ import Pagination from "../Pagination/Pagination";
 
 const ProductsPage: React.FC = () => {
   const { setProducts, getFilteredProducts, currentPage } = useProductStore();
-  const ITEMS_PER_PAGE = 8;
+  const ITEMS_PER_PAGE = 6;
 
   // 1. Sync with Firebase
   useEffect(() => {
