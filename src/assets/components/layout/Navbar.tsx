@@ -22,9 +22,9 @@ const Navbar: React.FC = () => {
 
         {/* Logo */}
         <div className="shrink-0">
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-[#3D1A12]">
+          <Link to={"/"} className="text-2xl md:text-3xl font-bold tracking-tight text-[#3D1A12]">
             ZAYQ
-          </h1>
+          </Link>
         </div>
 
         {/* Desktop Links */}
@@ -48,7 +48,7 @@ const Navbar: React.FC = () => {
         {/* Action Button + Mobile Toggle */}
         <div className="flex items-center space-x-4">
           <Link
-            to="/buy"
+            to="/products"
             className="hidden md:block bg-[#3D1A12] text-white px-8 py-3 rounded-xl font-semibold text-sm hover:bg-[#4D2A22] transition-colors shadow-sm"
           >
             Own now
