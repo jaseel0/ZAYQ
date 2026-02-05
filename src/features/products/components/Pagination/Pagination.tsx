@@ -1,7 +1,7 @@
 import React from "react";
 import { useProductStore } from "../../../../store/product.store";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { ITEMS_PER_PAGE } from "../Page/ProductsPage"; // Import constant
+import { ITEMS_PER_PAGE } from "../Page/ProductsPage"; 
 
 const Pagination: React.FC = () => {
     const { currentPage, setCurrentPage, getTotalPages } = useProductStore();
@@ -18,11 +18,8 @@ const Pagination: React.FC = () => {
     return (
         <div className="mt-32 flex items-center justify-center gap-8">
             <button
-                onClick={() => {
-                    setCurrentPage(Math.max(1, currentPage - 1));
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className="w-14 h-14 flex items-center justify-center rounded-full bg-white border border-[#3D1A12]/10 text-[#3D1A12] transition-all hover:bg-[#3D1A12] hover:text-white disabled:opacity-20"
+                onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
+                className="w-14 h-14 flex items-center justify-center rounded-full bg-white border border-[#E6E3DF] text-[#111111] transition-all hover:bg-[#111111] hover:text-white disabled:opacity-20"
                 disabled={currentPage === 1}
                 aria-label="Previous page"
             >
@@ -33,23 +30,18 @@ const Pagination: React.FC = () => {
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map(n => (
                     <button
                         key={n}
-                        onClick={() => {
-                            setCurrentPage(n);
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }}
-                        className={`transition-all duration-500 rounded-full ${n === currentPage ? 'bg-[#3D1A12] w-8 h-2.5' : 'bg-[#3D1A12]/20 w-2.5 h-2.5'
-                            }`}
-                        aria-label="button"
+                        onClick={() => handlePageChange(n)}
+                        className={`transition-all duration-500 rounded-full ${
+                            n === currentPage ? 'bg-[#111111] w-8 h-2.5' : 'bg-[#E6E3DF] w-2.5 h-2.5'
+                        }`}
+                        aria-label={`Go to page ${n}`}
                     />
                 ))}
             </div>
 
             <button
-                onClick={() => {
-                    setCurrentPage(Math.min(totalPages, currentPage + 1));
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className="w-14 h-14 flex items-center justify-center rounded-full bg-white border border-[#3D1A12]/10 text-[#3D1A12] transition-all hover:bg-[#3D1A12] hover:text-white disabled:opacity-20"
+                onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
+                className="w-14 h-14 flex items-center justify-center rounded-full bg-white border border-[#E6E3DF] text-[#111111] transition-all hover:bg-[#111111] hover:text-white disabled:opacity-20"
                 disabled={currentPage === totalPages}
                 aria-label="Next page"
             >
