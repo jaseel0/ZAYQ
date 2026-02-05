@@ -7,9 +7,11 @@ import ProductGrid from "../ProductGrid/ProductGrid";
 import ProductFilters from "../ProductFilters/ProductFilters";
 import Pagination from "../Pagination/Pagination";
 
+// Centralized Constant
+export const ITEMS_PER_PAGE = 6;
+
 const ProductsPage: React.FC = () => {
   const { setProducts, getFilteredProducts, currentPage } = useProductStore();
-  const ITEMS_PER_PAGE = 8;
 
   // 1. Sync with Firebase
   useEffect(() => {
@@ -24,7 +26,7 @@ const ProductsPage: React.FC = () => {
     return () => unsubscribe();
   }, [setProducts]);
 
-  // 2. Get Filtered Data and Slice for Pagination
+  // 2. Pagination Logic
   const filteredData = getFilteredProducts();
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const currentItems = filteredData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
@@ -36,7 +38,9 @@ const ProductsPage: React.FC = () => {
           <h1 className="text-6xl md:text-8xl font-black text-[#111111] tracking-tight">
             ZAYQ<span className="text-[#8F8F8F]">CASE</span>
           </h1>
-          <p className="mt-4 text-[#8F8F8F] font-bold uppercase tracking-[0.4em] text-xs">Essential Protection Series</p>
+          <p className="mt-4 text-[#8F8F8F] font-bold uppercase tracking-[0.4em] text-xs">
+            Essential Protection Series
+          </p>
         </div>
 
         <ProductToolbar />
@@ -47,15 +51,15 @@ const ProductsPage: React.FC = () => {
           </div>
           <div className="flex-1">
             {filteredData.length === 0 ? (
-                <div className="flex flex-col items-center justify-center py-20 text-center">
-                    <p className="text-xl font-bold text-[#111111]">No cases found</p>
-                    <p className="text-[#8F8F8F]">Try adjusting your filters or search.</p>
-                </div>
+              <div className="flex flex-col items-center justify-center py-20 text-center">
+                <p className="text-xl font-bold text-[#111111]">No cases found</p>
+                <p className="text-[#8F8F8F]">Try adjusting your filters or search.</p>
+              </div>
             ) : (
-                <>
-                  <ProductGrid products={currentItems} />
-                  <Pagination />
-                </>
+              <>
+                <ProductGrid products={currentItems} />
+                <Pagination />
+              </>
             )}
           </div>
         </div>
