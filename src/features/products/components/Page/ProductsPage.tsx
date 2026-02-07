@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useProductStore, type Product } from "../../../../store/product.store";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "../../../../lib/firebase";
@@ -6,28 +6,34 @@ import ProductToolbar from "../ProductToolbar/ProductToolbar";
 import ProductGrid from "../ProductGrid/ProductGrid";
 import ProductFilters from "../ProductFilters/ProductFilters";
 import Pagination from "../Pagination/Pagination";
+import ProductSkeleton from "../ProductGrid/ProductSkeleton";
 
-// Centralized Constant
 export const ITEMS_PER_PAGE = 6;
 
 const ProductsPage: React.FC = () => {
   const { setProducts, getFilteredProducts, currentPage } = useProductStore();
-  const ITEMS_PER_PAGE = 6;
+  const [isLoading, setIsLoading] = useState(true);
 
-  // 1. Sync with Firebase
+
   useEffect(() => {
     const q = query(collection(db, "products"));
+    
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const liveData = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
       })) as Product[];
+      
       setProducts(liveData);
+      setIsLoading(false); 
+    }, (error) => {
+      console.error("Firebase fetch error:", error);
+      setIsLoading(false);
     });
+
     return () => unsubscribe();
   }, [setProducts]);
 
-  // 2. Pagination Logic
   const filteredData = getFilteredProducts();
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const currentItems = filteredData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
@@ -51,13 +57,23 @@ const ProductsPage: React.FC = () => {
           <div className="w-full md:w-64">
             <ProductFilters />
           </div>
+
           <div className="flex-1">
-            {filteredData.length === 0 ? (
-                <div className="flex flex-col items-center justify-center py-20 text-center">
-                    <p className="text-xl font-bold text-[#3D1A12]">No cases found</p>
-                    <p className="text-[#3D1A12]/40">Try adjusting your filters or search.</p>
-                </div>
+            {isLoading ? (
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+                {Array.from({ length: ITEMS_PER_PAGE }).map((_, i) => (
+                  <ProductSkeleton key={i} />
+                ))}
+              </div>
+            ) : filteredData.length === 0 ? (
+             
+              <div className="flex flex-col items-center justify-center py-20 text-center">
+                <p className="text-xl font-bold text-[#3D1A12]">No cases found</p>
+                <p className="text-[#3D1A12]/40">Try adjusting your filters or search.</p>
+              </div>
             ) : (
+              
               <>
                 <ProductGrid products={currentItems} />
                 <Pagination />
