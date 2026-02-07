@@ -1,4 +1,4 @@
-import { create } from 'zustand'
+import { create } from 'zustand';
 
 export interface Product {
   id: string;
@@ -9,10 +9,10 @@ export interface Product {
   status: 'in-stock' | 'out-of-stock' | 'coming-soon';
   type: 'matte' | 'clear' | 'leather';
   isFeatured?: boolean;
-  description?: string;
+  description?: string; // We can use this for the Hex Color code
 }
 
-type SortBy = 'featured' | 'price-asc' | 'price-desc'
+type SortBy = 'featured' | 'price-asc' | 'price-desc';
 
 interface ProductState {
   products: Product[];
@@ -20,15 +20,11 @@ interface ProductState {
   sortBy: SortBy;
   selectedCategory: string;
   currentPage: number;
-
-  // Actions
   setProducts: (products: Product[]) => void;
   setSearchQuery: (q: string) => void;
   setSortBy: (s: SortBy) => void;
   setSelectedCategory: (c: string) => void;
   setCurrentPage: (p: number) => void;
-  
-  // Logic Getters
   getFilteredProducts: () => Product[];
   getTotalPages: (itemsPerPage: number) => number;
 }
@@ -49,14 +45,12 @@ export const useProductStore = create<ProductState>((set, get) => ({
   getFilteredProducts: () => {
     const { products, searchQuery, selectedCategory, sortBy } = get();
     
-    // 1. Filter
     const filtered = products.filter((p) => {
       const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
       const matchesCategory = selectedCategory === 'All' || p.category === selectedCategory;
       return matchesSearch && matchesCategory;
     });
 
-    // 2. Sort
     return [...filtered].sort((a, b) => {
       if (sortBy === 'price-asc') return a.price - b.price;
       if (sortBy === 'price-desc') return b.price - a.price;
@@ -72,4 +66,4 @@ export const useProductStore = create<ProductState>((set, get) => ({
     const filteredCount = get().getFilteredProducts().length;
     return Math.ceil(filteredCount / itemsPerPage) || 1;
   },
-}))
+}));
