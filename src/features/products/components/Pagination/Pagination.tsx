@@ -7,7 +7,6 @@ const Pagination: React.FC = () => {
   const { currentPage, setCurrentPage, getTotalPages } = useProductStore();
   const totalPages = getTotalPages(ITEMS_PER_PAGE);
 
-  // Hide if only one page exists
   if (totalPages <= 1) return null;
 
   const handlePageChange = (page: number) => {
