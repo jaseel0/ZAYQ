@@ -1,7 +1,7 @@
 import React from "react";
 import { useProductStore } from "../../../../store/product.store";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { ITEMS_PER_PAGE } from "../Page/ProductsPage"; // Import constant
+import { ITEMS_PER_PAGE } from "../Page/ProductsPage"; 
 
 const Pagination: React.FC = () => {
     const { currentPage, setCurrentPage, getTotalPages } = useProductStore();
