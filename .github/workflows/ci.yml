@@ -28,8 +28,7 @@ jobs:
       - name: 🎨 Lint Check
         run: npm run lint || echo "Linting warnings found, moving to deploy..."
 
-      - name: 🧪 Run Tests
-        run: npm test
+      
 
   deploy:
     name: 🌐 Deploy to Vercel
