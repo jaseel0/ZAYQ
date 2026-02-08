@@ -1,0 +1,14 @@
+version: 2
+updates:
+  # Keep React project dependencies fresh
+  - package-ecosystem: "npm"
+    directory: "/"                # Root folder where package.json is located
+    schedule:
+      interval: "daily"           # Check every day (good for new projects)
+    open-pull-requests-limit: 5   # Limit active PRs so you don’t get overwhelmed
+
+  # Keep GitHub Actions workflows updated
+  - package-ecosystem: "github-actions"
+    directory: "/"                # Looks inside .github/workflows/
+    schedule:
+      interval: "weekly"          # Weekly checks are usually enough
