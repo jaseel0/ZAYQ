@@ -1,14 +1,26 @@
 version: 2
 updates:
-  # Keep React project dependencies fresh
   - package-ecosystem: "npm"
-    directory: "/"                # Root folder where package.json is located
+    directory: "/"
     schedule:
-      interval: "daily"           # Check every day (good for new projects)
-    open-pull-requests-limit: 5   # Limit active PRs so you don’t get overwhelmed
+      interval: "daily"
+    open-pull-requests-limit: 5
+    # --- New Grouping Logic ---
+    groups:
+      # Group 1: Bundle all TypeScript type definitions
+      typescript-types:
+        patterns:
+          - "@types*"
+      
+      # Group 2: Bundle dev tools that won't break your production site
+      dev-tooling:
+        patterns:
+          - "eslint*"
+          - "prettier*"
+          - "vite*"
+          - "vitest*"
 
-  # Keep GitHub Actions workflows updated
   - package-ecosystem: "github-actions"
-    directory: "/"                # Looks inside .github/workflows/
+    directory: "/"
     schedule:
-      interval: "weekly"          # Weekly checks are usually enough
+      interval: "weekly"
