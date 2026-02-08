@@ -1,0 +1,18 @@
+# .coderabbit.yaml
+language: "en-US"
+reviews:
+  profile: "chill" # Options: chill, assertive, comprehensive
+  auto_review:
+    enabled: true
+    drafts: false # Don't review if PR is still a "Draft"
+  tools:
+    github_checks:
+      enabled: true
+
+# Tell CodeRabbit to focus on React/TS best practices
+instructions: |
+  Focus on:
+  - React performance (unnecessary re-renders)
+  - TypeScript type safety (avoid 'any')
+  - Proper use of Tailwind CSS classes (if applicable)
+  - Ensuring clean code and descriptive variable names.
